@@ -1,0 +1,42 @@
+name: Trigger FindX6Pro Kernel Build (via Action-Build)
+
+on:
+  workflow_dispatch:
+    inputs:
+      kernel_source:
+        description: '内核源码地址'
+        required: true
+        default: 'https://github.com/oppo-source/android_kernel_oppo_sm8550'
+      kernel_branch:
+        description: '内核分支'
+        required: true
+        default: 'oppo/sm8550_v_15.0.0_find_x6_pro'
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 触发 Action-Build 仓库的工作流
+        env:
+          GH_TOKEN: ${{ secrets.ACTION_BUILD_PAT }}
+        run: |
+          # 注意：请将下面的 OWNER/REPO 替换为你 fork 后的地址，或者使用原仓库（但需要原仓库开启 workflow_dispatch 权限）
+          # 因为原仓库可能不允许外部触发，建议你先 fork 它
+          OWNER="a3432513702-lgtm"
+          REPO="Action-Build"
+          WORKFLOW_ID="Build FindX6Pro kernel.yml"  # 原仓库中的文件名
+
+          # 调用 GitHub API 触发 workflow_dispatch
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GH_TOKEN" \
+            https://api.github.com/repos/$OWNER/$REPO/actions/workflows/$WORKFLOW_ID/dispatches \
+            -d '{
+              "ref": "main",
+              "inputs": {
+                "kernel_source": "${{ github.event.inputs.kernel_source }}",
+                "kernel_branch": "${{ github.event.inputs.kernel_branch }}"
+              }
+            }'
+          
+          echo "编译任务已触发，请查看：https://github.com/$OWNER/$REPO/actions"
