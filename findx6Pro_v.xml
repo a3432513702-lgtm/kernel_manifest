@@ -5,4 +5,4 @@
   <!-- Kernel Platform -->
   <project path="kernel_platform" name="oppo-source/android_kernel_modules_and_devicetree_oppo_sm8550" revision="oppo/sm8550_v_15.0.0_find_x6_pro" />
 
-</manifest>
+</manifest> 
