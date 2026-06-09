@@ -1,49 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <!-- 远程仓库定义 -->
-  <remote name="github" fetch="https://github.com/" />
   <remote name="oppo" fetch="https://github.com/oppo-source/" />
 
-  <!-- ========= 内核核心源码 ========= -->
-  <project name="oppo-source/android_kernel_oppo_sm8550"
-           path="kernel_platform"
+  <!-- 内核核心源码，revision 必须包含 oppo/ 前缀和版本号 -->
+  <project name="android_kernel_oppo_sm8550" 
+           path="kernel_platform" 
            revision="oppo/sm8550_v_15.0.0_find_x6_pro" />
 
-  <!-- ========= 设备树 + 内核模块 ========= -->
-  <project name="oppo-source/android_kernel_modules_and_devicetree_oppo_sm8550"
-           path="device/oppo/sm8550"
+  <!-- 设备树和模块 -->
+  <project name="android_kernel_modules_and_devicetree_oppo_sm8550" 
+           path="device/oppo/sm8550" 
            revision="oppo/sm8550_v_15.0.0_find_x6_pro" />
 
-  <!-- ========= 编译工具链（从 Numbersf 预置库中复用，无需修改） ========= -->
-  <!-- Clang 编译器 -->
-  <project name="Numbersf/kernel_clang"
-           path="prebuilts/clang/host/linux-x86"
-           revision="clang-r510928" />
-
-  <!-- GCC 交叉编译工具链（aarch64） -->
-  <project name="Numbersf/kernel_gcc"
-           path="prebuilts/gcc/linux-x86/aarch64"
-           revision="gcc-4.9" />
-
-  <!-- GCC 主机端工具（用于编译 host 程序） -->
-  <project name="Numbersf/kernel_gcc_host"
-           path="prebuilts/gcc/linux-x86/host"
-           revision="gcc-4.9" />
-
-  <!-- 内核构建辅助工具（pahole, etc.） -->
-  <project name="Numbersf/kernel_build_tools"
-           path="prebuilts/kernel-build-tools"
-           revision="main" />
-
-  <!-- 可选：如果您的内核需要 Rust 支持（6.1+ 内核常见），取消下面注释 -->
-  <!--
-  <project name="Numbersf/kernel_rust"
-           path="prebuilts/rust"
-           revision="main" />
-  -->
-
-  <!-- 可选：额外的内核头文件或模块支持 -->
-  <project name="Numbersf/kernel_prebuilts"
-           path="prebuilts"
-           revision="main" />
+  <!-- 以下是编译工具链（保持原样） -->
+  <project name="Numbersf/kernel_clang" path="prebuilts/clang/host/linux-x86" revision="clang-r510928" />
+  <project name="Numbersf/kernel_gcc" path="prebuilts/gcc/linux-x86/aarch64" revision="gcc-4.9" />
+  <project name="Numbersf/kernel_gcc_host" path="prebuilts/gcc/linux-x86/host" revision="gcc-4.9" />
+  <project name="Numbersf/kernel_build_tools" path="prebuilts/kernel-build-tools" revision="main" />
+  <project name="Numbersf/kernel_prebuilts" path="prebuilts" revision="main" />
 </manifest>
