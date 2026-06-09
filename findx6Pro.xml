@@ -2,17 +2,14 @@
 <manifest>
   <remote name="oppo" fetch="https://github.com/oppo-source/" />
 
-  <!-- 内核核心源码，revision 必须包含 oppo/ 前缀和版本号 -->
   <project name="android_kernel_oppo_sm8550" 
            path="kernel_platform" 
-           revision="oppo/sm8550_v_15.0.0_find_x6_pro" />
+           revision="oppo/sm8550_v_15.0.0" />
 
-  <!-- 设备树和模块 -->
   <project name="android_kernel_modules_and_devicetree_oppo_sm8550" 
            path="device/oppo/sm8550" 
-           revision="oppo/sm8550_v_15.0.0_find_x6_pro" />
+           revision="oppo/sm8550_v_15.0.0" />
 
-  <!-- 以下是编译工具链（保持原样） -->
   <project name="Numbersf/kernel_clang" path="prebuilts/clang/host/linux-x86" revision="clang-r510928" />
   <project name="Numbersf/kernel_gcc" path="prebuilts/gcc/linux-x86/aarch64" revision="gcc-4.9" />
   <project name="Numbersf/kernel_gcc_host" path="prebuilts/gcc/linux-x86/host" revision="gcc-4.9" />
